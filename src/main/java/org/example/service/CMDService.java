@@ -3,6 +3,7 @@ package org.example.service;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -18,8 +19,8 @@ public class CMDService {
      * @throws IOException
      * @throws InterruptedException
      */
-    public String runCommandReturnOutput(String cmd) throws IOException, InterruptedException {
-        Process process = Runtime.getRuntime().exec(cmd);
+    public String runCommandReturnOutput(String cmd, File dir) throws IOException, InterruptedException {
+        Process process = Runtime.getRuntime().exec(cmd.split(" "), new String[]{""}, dir);
         process.waitFor();
         BufferedReader reader =
                 new BufferedReader(new InputStreamReader(process.getInputStream()));

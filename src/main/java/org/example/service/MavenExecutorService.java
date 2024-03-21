@@ -18,7 +18,7 @@ public class MavenExecutorService implements ProgramExecutor{
     @Override
     public Program conductTests(File directory) {
         try{
-            String out = cmdService.runCommandReturnOutput("mvn test");
+            String out = cmdService.runCommandReturnOutput("mvn test", directory);
             return new Program(0, 0, "", "", out);
         } catch (IOException e) {
             throw new RuntimeException(e);

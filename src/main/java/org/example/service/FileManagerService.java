@@ -81,4 +81,18 @@ public class FileManagerService {
         }
         return destFile;
     }
+    public void tearDown(String name){
+        File dir = new File(name);
+        deleteDirectory(dir);
+        File zip = new File(name+".zip");
+        zip.delete();
+    }
+    public void deleteDirectory(File dir){
+        File[] allContents = dir.listFiles();
+        if (allContents != null) {
+            for (File file : allContents) {
+                deleteDirectory(file);
+            }
+        }
+    }
 }

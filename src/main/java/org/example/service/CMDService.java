@@ -1,12 +1,13 @@
 package org.example.service;
 
+import org.example.Main;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
+import Main.logger;
 /**
  * service class used to execute command line arguments
  */
@@ -20,6 +21,7 @@ public class CMDService {
      * @throws InterruptedException
      */
     public String runCommandReturnOutput(String cmd, File dir) throws IOException, InterruptedException {
+        Main.logger.info("Running command "+cmd+" in directory "+dir.getName());
         Process process = Runtime.getRuntime().exec(cmd.split(" "), new String[]{""}, dir);
         process.waitFor();
         BufferedReader reader =

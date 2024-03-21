@@ -86,13 +86,15 @@ public class FileManagerService {
         deleteDirectory(dir);
         File zip = new File(name+".zip");
         zip.delete();
+        dir.delete();
     }
     public void deleteDirectory(File dir){
-        File[] allContents = dir.listFiles();
-        if (allContents != null) {
-            for (File file : allContents) {
-                deleteDirectory(file);
+        File[] files = dir.listFiles();
+        for(File f : files){
+            if(f.isDirectory()){
+                deleteDirectory(f);
             }
+            f.delete();
         }
     }
 }

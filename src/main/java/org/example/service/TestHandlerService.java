@@ -29,7 +29,8 @@ public class TestHandlerService {
         fileManagerService.unzipFile(program.getId());
         File programDirectory = new File(program.getId());
         Program testReport = programExecutor.conductTests(programDirectory);
-        return testReport;
+        fileManagerService.tearDown(program.getId());
+        return null;
     }
     public void determineTestType(String type) throws TestTypeException {
 

@@ -33,7 +33,8 @@ public class CMDService {
                 result += outputLine + "\n";
         }while(outputLine!=null);
         process.waitFor();
-
+        Main.logger.info("Command "+cmd +" in directory "+dir.getName()+ " produced result: "+
+                result);
         return result;
     }
 

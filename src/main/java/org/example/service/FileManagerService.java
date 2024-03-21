@@ -1,5 +1,6 @@
 package org.example.service;
 
+import org.example.Main;
 import org.example.exception.FileException;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import java.util.zip.ZipInputStream;
 @Service
 public class FileManagerService {
     public void writeBytesToZip(String directoryName, byte[] data) throws FileException{
+        Main.logger.info("Creating zipfile for "+directoryName);
         File outputFile = new File(directoryName+".zip");
         try {
             outputFile.createNewFile();
@@ -29,6 +31,7 @@ public class FileManagerService {
         }
     }
     public void unzipFile(String name) throws FileException {
+        Main.logger.info("Unzipping directory for "+name);
         try {
             String fileZip = "./" + name+".zip";
             File destDir = new File("./"+name);
@@ -82,6 +85,7 @@ public class FileManagerService {
         return destFile;
     }
     public void tearDown(String name){
+        Main.logger.info("Tearing down program : "+name);
         File dir = new File(name);
         deleteDirectory(dir);
         File zip = new File(name+".zip");

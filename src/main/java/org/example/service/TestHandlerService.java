@@ -30,7 +30,7 @@ public class TestHandlerService {
         File programDirectory = new File(program.getId());
         Program testReport = programExecutor.conductTests(programDirectory);
         fileManagerService.tearDown(program.getId());
-        return null;
+        return testReport;
     }
     public void determineTestType(String type) throws TestTypeException {
 
